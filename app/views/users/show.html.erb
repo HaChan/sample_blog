@@ -1,0 +1,50 @@
+<% if @title %>
+  <% provide(:title, @title) %>
+<% else%>
+  <% provide(:title, @user.name) %>
+<% end %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user, size:40 %>
+        <%= @user.name %>
+      </h1>
+    </section>
+    <section>
+      <%#= render 'shared/stats' %>
+      
+      <% if @users %>
+        <% if @users.any? %>
+          <div class="user_avatars">
+            <% @users.each do |user| %>
+              <%= link_to gravatar_for(user, size: 30), user %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </section>
+  </aside>
+
+  <div class="span8">
+    <% if @title %>
+      <h3><%= @title %></h3>
+      <% if @users.any? %>
+        <ul class="users">
+          <%= render @users %>
+        </ul>
+        <%= will_paginate %>
+      <% end %>
+    <% else %>
+      <%= render 'follow_form' if signed_in? %>
+      <% if @user.entries.any? %>
+        <h3>entries (<%= @user.entries.count %>)</h3>
+        <ol class="entries">
+          <%= render @entries %>
+        </ol>
+        <%= will_paginate @entries %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

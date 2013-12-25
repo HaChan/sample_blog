@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="span6 offset3">
+	<%= form_for(@entry) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+	  <div class="field">
+	  	<%= f.label :title %>
+	    <%= f.text_area :title, placeholder: "Compose new title..." %>
+	  </div>
+	  <div class="field">
+	  	<%= f.label :content %>
+	    <%= f.text_area :content, placeholder: "Compose new entry..." %>
+	  </div>
+	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	<% end %>
+  </div>
+</div>

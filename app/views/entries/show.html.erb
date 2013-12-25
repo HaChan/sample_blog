@@ -1,0 +1,30 @@
+  <%= link_to gravatar_for(@entry.user), @entry.user %>
+  <span class="user">
+    <%= link_to @entry.title, @entry %>
+  </span>
+  <span class="content"><%= wrap(@entry.content) %></span>
+  <span class="timestamp">
+    Posted by <%= link_to @entry.user.name, @entry.user %>
+     <%= time_ago_in_words(@entry.created_at) %> ago.
+  </span>
+
+  <p> Comment </p>
+  <%= render '/shared/comment'%>
+
+<% if !current_user.nil? %>
+<div class="row">
+  <div class="span6 offset3">
+  <% @comment = @entry.comments.build() %>
+	<%= form_for(@comment) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+	  <div class="field">
+	    <%= link_to gravatar_for(current_user), current_user %>
+	  	<%= f.label "Comment "+:comment.to_s %>
+	    <%= f.text_area :content, placeholder: "Compose new entry..." %>
+	    <%= f.hidden_field :entry_id, value: @entry.id %>
+	  </div>
+	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	<% end %>
+  </div>
+</div>
+<% end %>

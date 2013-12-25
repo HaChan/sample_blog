@@ -1,4 +1,28 @@
 SampleBlog::Application.routes.draw do
+  root "default_pages#home"
+  match '/help',    to: 'default_pages#help',    via: 'get'
+  match '/about',   to: 'default_pages#about',   via: 'get'
+  match '/contact', to: 'default_pages#contact', via: 'get'
+  
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  match '/signup',  to: 'users#new',            via: 'get'
+  
+  resources :entries, only: [:new, :edit, :update, :show, :create, :destroy]
+  
+  resources :comments, only: [:create]
+  
+  resources :relationships, only: [:create, :destroy]
+  
+  
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
