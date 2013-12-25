@@ -16,7 +16,12 @@
   <div class="span6 offset3">
   <% @comment = @entry.comments.build() %>
 	<%= form_for(@comment) do |f| %>
-	  <%= render 'shared/error_messages', object: f.object %>
+	  <%#= render 'shared/error_messages', object: f.object %>
+    <% if !@errors.nil? %>
+			<% @errors.full_messages.each do |value| %>
+        <%= content_tag(:div, value, class: "alert alert-"+:error.to_s) %>
+      <% end %>
+    <% end %>
 	  <div class="field">
 	    <%= link_to gravatar_for(current_user), current_user %>
 	  	<%= f.label "Comment "+:comment.to_s %>

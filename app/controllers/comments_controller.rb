@@ -10,6 +10,8 @@ class CommentsController < ApplicationController
       flash[:success] = "Comment created!"
       redirect_to @entry
     else
+#			flash.now[:error] = @comment.errors[:content]
+			@errors = @comment.errors
       render 'entries/show'
     end
   end
