@@ -35,10 +35,10 @@ end
 
 def make_comments
   i=Entry.first.id
-  50.times do
+  5.times do
     entry = Entry.find(i)
     i = i-1
-    10.times do
+    50.times do
       content = Faker::Lorem.sentence(5)
       entry.comments.create!(content: content, user_id: 1 + Random.rand(20))
     end

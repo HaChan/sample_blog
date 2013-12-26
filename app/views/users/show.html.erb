@@ -39,7 +39,9 @@
       <%= render 'follow_form' if signed_in? %>
       <% if @user.entries.any? %>
         <h3>entries (<%= @user.entries.count %>)</h3>
-        <%= render 'shared/create_post' %>
+        <% if current_user?(@user) %>
+          <%= render 'shared/create_post' %>
+        <% end %>
         <ol class="entries">
           <%= render @entries %>
         </ol>
