@@ -3,15 +3,15 @@
 	<%= form_for(@entry) do |f| %>
 	  <%= render 'shared/error_messages', object: f.object %>
 	  <div class="field">
-	  	<%= f.label Time.new.to_date %>
-	  </div>
-	  <div class="field">
 	  	<%= f.label :title %>
 	    <%= f.text_area :title, placeholder: "Compose new title..." %>
 	  </div>
 	  <div class="field">
 	  	<%= f.label :content %>
 	    <%= f.text_area :content, placeholder: "Compose new entry..." %>
+	  </div>
+	  <div class="field">
+	  	<%= Time.now.strftime("%Y-%m-%d %A %H:%M:%S") %>
 	  </div>
 	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 	<% end %>

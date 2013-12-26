@@ -1,19 +1,6 @@
 <% if @comment_items.any? %>
   <ol class="comments">
-    <%#= render partial: 'shared/comment_item', collection: @comment_items %>
-    <% @comment_items.each do |comment| %>
-      <li id="<%= comment.id %>">
-        <%= link_to gravatar_for(comment.user), comment.user %>
-        <span class="user">
-          Posted by <%= link_to comment.user.name, comment.user %>
-        </span>
-        <span class="content"><%= wrap(comment.content) %></span>
-        <span class="timestamp">
-          
-           <%= time_ago_in_words(comment.created_at) %> ago.
-        </span>
-      </li>
-    <% end %>
+    <%= render partial: 'shared/comment_item', collection: @comment_items %>
   </ol>
   <%= will_paginate @comment_items %>
 <% end %>

@@ -4,7 +4,8 @@
   </span>
   <span class="content"><%= wrap(entry.content) %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(entry.created_at) %> ago.
+    Posted <%= time_ago_in_words(entry.created_at) %> ago,
+     at <%= entry.created_at.strftime("%Y-%m-%d %a %H:%M:%S") %>
   </span>
 	<%= render '/shared/delete_items', entry: entry %>
 </li>

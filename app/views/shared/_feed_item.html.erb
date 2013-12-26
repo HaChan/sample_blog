@@ -8,6 +8,7 @@
   <span class="timestamp">
     Posted by <%= link_to feed_item.user.name, feed_item.user %>
      <%= time_ago_in_words(feed_item.created_at) %> ago.
+      at <%= feed_item.created_at.strftime("%Y-%m-%d %a %H:%M:%S") %>
   </span>
 
   <%= render '/shared/edit_entry', entry: feed_item %>
