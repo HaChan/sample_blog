@@ -40,7 +40,7 @@ def make_comments
     i = i-1
     10.times do
       content = Faker::Lorem.sentence(5)
-      entry.comments.create!(content: content, user_id: entry.user.id)
+      entry.comments.create!(content: content, user_id: 1 + Random.rand(20))
     end
   end
 end
