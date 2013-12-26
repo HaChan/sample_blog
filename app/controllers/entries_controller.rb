@@ -48,7 +48,7 @@ class EntriesController < ApplicationController
   
   def show
     @entry = Entry.find(params[:id])
-    @comment_items = @entry.comments.paginate(page: params[:page])
+    @comment_items = @entry.comments.paginate(page: params[:page], per_page: 3)
 #    @comment = @entry.comments.build()
   end
 

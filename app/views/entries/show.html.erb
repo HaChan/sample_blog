@@ -24,7 +24,8 @@
     <% end %>
 	  <div class="field">
 	    <%= link_to gravatar_for(current_user), current_user %>
-	  	<%= f.label "Comment "+:comment.to_s %>
+	  	<%= f.label "Comment " %>
+	  	<%= f.label Time.new.to_date %>
 	    <%= f.text_area :content, placeholder: "Compose new entry..." %>
 	    <%= f.hidden_field :entry_id, value: @entry.id %>
 	  </div>
